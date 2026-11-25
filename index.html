@@ -1151,6 +1151,35 @@ body{
   .hero-stat-clients:active .client-person-two{animation:none!important}
 }
 
+
+/* Seamless page-wide background blend: remove hard section colour bands. */
+body{
+  background-color:#f1e6ff;
+  background-image:
+    radial-gradient(ellipse 78% 20% at 8% 47%,rgba(248,180,138,.18) 0%,rgba(248,180,138,0) 78%),
+    radial-gradient(ellipse 76% 24% at 92% 72%,rgba(201,183,239,.20) 0%,rgba(201,183,239,0) 80%),
+    linear-gradient(
+      180deg,
+      #effb72 0%,
+      #f6ffd0 23%,
+      #fff3e4 39%,
+      #fbe2cb 49%,
+      #f8e9e7 59%,
+      #f7f0ff 73%,
+      #f1e6ff 83%,
+      #f3f6d3 93%,
+      #effb72 100%
+    );
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  background-attachment:scroll;
+}
+.connect,
+footer.foot{
+  background:transparent !important;
+  background-image:none !important;
+}
+
 </style>
 </head>
 <body>
