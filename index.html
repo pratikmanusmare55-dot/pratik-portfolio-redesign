@@ -1217,8 +1217,49 @@ footer.foot{
   .hero-art-wrap .hero-art-image{transition:none!important}
 }
 
+
+/* Safe hover animation fallback: keep the original Hero PNG visible at all times. */
+.hero-art-wrap .ci{position:relative;isolation:isolate;overflow:visible}
+.hero-art-wrap .hero-art-image-default{
+  position:relative;
+  inset:auto;
+  z-index:1;
+  display:block;
+  width:100%;
+  height:auto;
+  opacity:1;
+  object-fit:contain;
+  transition:filter .45s ease;
+}
+.hero-art-wrap .ci::after{
+  content:"";
+  position:absolute;
+  z-index:2;
+  inset:7% 5% 5%;
+  border-radius:24px;
+  pointer-events:none;
+  opacity:0;
+  transform:translateX(-115%) skewX(-13deg);
+  background:linear-gradient(105deg,transparent 24%,rgba(255,255,255,.62) 47%,rgba(233,249,58,.28) 54%,transparent 76%);
+  filter:blur(9px);
+  mix-blend-mode:screen;
+}
+.hero-art-wrap.char.on .hero-art-image-default{
+  --s:1.055;
+  filter:drop-shadow(0 24px 26px rgba(84,65,34,.22)) saturate(1.08);
+}
+@keyframes heroArtLightSweep{
+  0%{opacity:0;transform:translateX(-115%) skewX(-13deg)}
+  18%{opacity:.9}
+  100%{opacity:0;transform:translateX(115%) skewX(-13deg)}
+}
+.hero-art-wrap.char.on .ci::after{animation:heroArtLightSweep 1.05s ease-out both}
+@media(prefers-reduced-motion:reduce){
+  .hero-art-wrap .ci::after{display:none}
+  .hero-art-wrap .hero-art-image-default{transition:none}
+}
+
 </style>
-  <link rel="preload" as="image" href="assets/hero-hover.webp" type="image/webp">
 </head>
 <body>
 <div class="wave-backdrop" aria-hidden="true">
@@ -1315,7 +1356,6 @@ footer.foot{
     <div class="char k-float hero-art-wrap" tabindex="0" data-kind="float" data-say="Let's connect your apps, automate repetitive tasks, and keep every update in sync." data-par>
       <span class="ci">
         <img class="hero-art-image hero-art-image-default" src="assets/image-02.webp" alt="Three colleagues collaborating around a laptop" width="768" height="512" fetchpriority="high">
-        <img class="hero-art-image hero-art-image-hover" src="assets/hero-hover.webp" alt="" width="768" height="512" aria-hidden="true" decoding="async">
       </span>
     </div>
   </div>
