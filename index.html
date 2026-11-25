@@ -1180,7 +1180,45 @@ footer.foot{
   background-image:none !important;
 }
 
+
+/* Hero normal/hover art swap: same frame, smooth crossfade on pointer hover. */
+.hero-art-wrap .ci{
+  position:relative;
+  display:block;
+  width:100%;
+  aspect-ratio:3/2;
+}
+.hero-art-wrap .hero-art-image{
+  position:absolute;
+  inset:0;
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  transition:opacity .42s cubic-bezier(.2,.7,.2,1),filter .42s ease;
+}
+.hero-art-wrap .hero-art-image-default{z-index:1;opacity:1}
+.hero-art-wrap .hero-art-image-hover{z-index:2;opacity:0;pointer-events:none}
+.hero-art-wrap.char.on .hero-art-image-default{opacity:0}
+.hero-art-wrap.char.on .hero-art-image-hover{opacity:1}
+.hero-art-wrap .bubble{
+  width:max-content;
+  max-width:min(320px,78vw);
+  padding:13px 18px;
+  border-radius:17px;
+  font-size:.92rem;
+  line-height:1.38;
+  box-shadow:0 12px 28px rgba(35,30,17,.16);
+}
+@media(max-width:720px){
+  .hero-art-wrap .bubble{max-width:min(275px,82vw);font-size:.82rem;padding:10px 13px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-art-wrap .hero-art-image{transition:none!important}
+}
+
 </style>
+  <link rel="preload" as="image" href="assets/hero-hover.avif" type="image/avif">
 </head>
 <body>
 <div class="wave-backdrop" aria-hidden="true">
@@ -1274,9 +1312,10 @@ footer.foot{
     </div>
   </div>
   <div class="hero-visual">
-    <div class="char k-float hero-art-wrap" tabindex="0" data-kind="float" data-say="Hi! Let me show you what I can help with." data-par>
+    <div class="char k-float hero-art-wrap" tabindex="0" data-kind="float" data-say="Let's connect your apps, automate repetitive tasks, and keep every update in sync." data-par>
       <span class="ci">
-        <img class="hero-art-image" src="assets/image-02.webp" alt="Three colleagues collaborating around a laptop" width="768" height="512" fetchpriority="high">
+        <img class="hero-art-image hero-art-image-default" src="assets/image-02.webp" alt="Three colleagues collaborating around a laptop" width="768" height="512" fetchpriority="high">
+        <img class="hero-art-image hero-art-image-hover" src="assets/hero-hover.avif" alt="" width="768" height="512" aria-hidden="true" decoding="async">
       </span>
     </div>
   </div>
@@ -1448,7 +1487,7 @@ footer.foot{
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
   const chars = [...document.querySelectorAll('.char')]; let open = null, timer, raf, raf2;
   const target = c => { const s = c.dataset.target; return !s ? null : s === 'row' ? c.closest('.row')?.querySelector('.card-img') : document.querySelector(s); };
-  const reset = c => { const i = c.querySelector('img'); ['--mx', '--my', '--lean'].forEach(p => i.style.removeProperty(p)); };
+  const reset = c => { c.querySelectorAll('img').forEach(i => ['--mx', '--my', '--lean'].forEach(p => i.style.removeProperty(p))); };
   const hide = c => { c.classList.remove('on'); target(c)?.classList.remove('hl'); reset(c); if (open === c) open = null; };
   const show = c => {
     if (open && open !== c) hide(open); open = c;
@@ -1458,7 +1497,7 @@ footer.foot{
     if (r.top < 70) c.classList.add('below');
     c.classList.add('on');
     const t = target(c);
-    if (t) { t.classList.add('hl'); if (!reduce) { const a = c.getBoundingClientRect(), d = t.getBoundingClientRect(); c.querySelector('img').style.setProperty('--lean', d.left + d.width / 2 > a.left + a.width / 2 ? 1 : -1); } }
+    if (t) { t.classList.add('hl'); if (!reduce) { const a = c.getBoundingClientRect(), d = t.getBoundingClientRect(), lean = d.left + d.width / 2 > a.left + a.width / 2 ? 1 : -1; c.querySelectorAll('img').forEach(i => i.style.setProperty('--lean', lean)); } }
   };
   chars.forEach((c, i) => {
     const b = document.createElement('span'); b.className = 'bubble'; b.setAttribute('aria-hidden', 'true'); b.textContent = c.dataset.say; c.appendChild(b);
@@ -1468,8 +1507,8 @@ footer.foot{
     c.addEventListener('pointerleave', e => e.pointerType === 'mouse' && hide(c));
     c.addEventListener('pointermove', e => {
       if (e.pointerType !== 'mouse' || reduce) return; cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => { const r = c.getBoundingClientRect(), s = c.querySelector('img').style;
-        s.setProperty('--mx', ((e.clientX - r.left) / r.width - .5) * 2); s.setProperty('--my', ((e.clientY - r.top) / r.height - .5) * 2); });
+      raf = requestAnimationFrame(() => { const r = c.getBoundingClientRect(), mx = ((e.clientX - r.left) / r.width - .5) * 2, my = ((e.clientY - r.top) / r.height - .5) * 2;
+        c.querySelectorAll('img').forEach(i => { i.style.setProperty('--mx', mx); i.style.setProperty('--my', my); }); });
     });
     c.addEventListener('pointerdown', e => { if (e.pointerType === 'mouse') return; c.classList.contains('on') ? hide(c) : show(c); clearTimeout(timer); timer = setTimeout(() => hide(c), 3200); });
     c.addEventListener('focus', () => show(c)); c.addEventListener('blur', () => hide(c));
@@ -1481,7 +1520,7 @@ footer.foot{
   // very subtle page-level parallax for a few characters
   if (fine && !reduce) addEventListener('pointermove', e => { cancelAnimationFrame(raf2); raf2 = requestAnimationFrame(() => {
     const nx = (e.clientX / innerWidth - .5) * 2, ny = (e.clientY / innerHeight - .5) * 2;
-    chars.forEach(c => { if (c.hasAttribute('data-par') && !c.classList.contains('off')) { const s = c.querySelector('img').style; s.setProperty('--px', nx * 6 + 'px'); s.setProperty('--py', ny * 4 + 'px'); } }); }); }, { passive: true });
+    chars.forEach(c => { if (c.hasAttribute('data-par') && !c.classList.contains('off')) c.querySelectorAll('img').forEach(i => { i.style.setProperty('--px', nx * 6 + 'px'); i.style.setProperty('--py', ny * 4 + 'px'); }); }); }); }, { passive: true });
 })();
 </script>
 
