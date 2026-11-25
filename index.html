@@ -1259,6 +1259,16 @@ footer.foot{
   .hero-art-wrap .hero-art-image-default{transition:none}
 }
 
+
+/* Hero: preserve the exact same image; only the shared speech bubble opens on hover. */
+.hero-art-wrap .ci::after{display:none!important;content:none!important}
+.hero-art-wrap .hero-art-image{
+  opacity:1!important;
+}
+.hero-art-wrap.char.on .hero-art-image{
+  opacity:1!important;
+}
+
 </style>
 </head>
 <body>
@@ -1355,7 +1365,7 @@ footer.foot{
   <div class="hero-visual">
     <div class="char k-float hero-art-wrap" tabindex="0" data-kind="float" data-say="Let's connect your apps, automate repetitive tasks, and keep every update in sync." data-par>
       <span class="ci">
-        <img class="hero-art-image hero-art-image-default" src="assets/image-02.webp" alt="Three colleagues collaborating around a laptop" width="768" height="512" fetchpriority="high">
+        <img class="hero-art-image" src="assets/image-02.webp" alt="Three colleagues collaborating around a laptop" width="768" height="512" fetchpriority="high">
       </span>
     </div>
   </div>
