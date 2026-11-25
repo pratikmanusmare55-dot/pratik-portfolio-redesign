@@ -240,16 +240,13 @@ main img.cursor-image.is-hovering,footer img.cursor-image.is-hovering{--lift:-5p
 .hero-copy h1{
   margin:0;
   text-align:left;
-  font-size:clamp(2.5rem,4.55vw,4.15rem);
-  line-height:1.04;
-  letter-spacing:-.035em;
-  font-weight:600;
+  font-family:"Playfair Display",Georgia,"Times New Roman",serif;
+  font-size:clamp(2.2rem,5.1vw,4.2rem);
+  line-height:1.1;
+  letter-spacing:normal;
+  font-weight:500;
 }
 .hero-copy h1 em{font-style:normal}
-.hero-description{
-  max-width:510px;margin:20px 0 0;
-  color:var(--mut);font-size:1.08rem;line-height:1.65;
-}
 .hero-visual{
   grid-area:visual;position:relative;z-index:1;
   min-width:0;display:grid;place-items:center;isolation:isolate;
@@ -343,9 +340,7 @@ main img.cursor-image.is-hovering,footer img.cursor-image.is-hovering{--lift:-5p
     text-align:center;
   }
   .hero-copy{max-width:560px;margin:0 auto}
-  .hero-kicker{font-size:.84rem;margin-bottom:14px}
-  .hero-copy h1{text-align:center;font-size:clamp(2.35rem,9vw,3.15rem);line-height:1.06}
-  .hero-description{font-size:1rem;margin:14px auto 0;max-width:480px}
+  .hero-copy h1{text-align:center;font-size:clamp(2.15rem,8.4vw,3.4rem);line-height:1.1;letter-spacing:normal}
   .hero-visual{width:100%;max-width:540px;margin:10px auto 0}
   .hero-visual::before{width:112%;height:98%;filter:blur(18px)}
   .hero-visual::after{bottom:6%;height:7%}
@@ -419,9 +414,7 @@ main img.cursor-image.is-hovering,footer img.cursor-image.is-hovering{--lift:-5p
 <main>
 <section class="hero">
   <div class="hero-copy reveal">
-    <span class="hero-kicker">✦ Workflow Automation Specialist</span>
-    <h1>Build. Automate.<br><em>Scale Your Business.</em></h1>
-    <p class="hero-description">Airtable, Make.com, Google Sheets and custom automations that turn manual work into simple, reliable workflows.</p>
+    <h1 class="reveal">Business Automation<br><em>“Design the future”</em></h1>
   </div>
   <div class="hero-visual">
     <span class="char k-float hero-art" tabindex="0" data-kind="float" data-say="Hi! Let me show you what I can help with." data-par><span class="ci"><img src="assets/image-02.webp" alt="Three colleagues collaborating around a laptop" width="768" height="512"></span></span>
