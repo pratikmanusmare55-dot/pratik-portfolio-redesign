@@ -212,7 +212,162 @@ main img.cursor-image.is-hovering,footer img.cursor-image.is-hovering{--lift:-5p
 @media(prefers-reduced-motion:reduce){
  .wave-flow{animation:none!important;transform:none!important}
  main img.cursor-image,footer img.cursor-image{transition:none!important;transform:none!important}
-}</style>
+}
+/* Hero section: same illustration, blended into the existing pastel canvas */
+.hero{
+  display:grid;
+  grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);
+  grid-template-areas:"copy visual" "actions visual" "stats visual";
+  align-items:center;
+  column-gap:18px;
+  row-gap:0;
+  max-width:1180px;
+  margin:0 auto;
+  padding:78px 30px 54px;
+  text-align:left;
+}
+.hero-copy{grid-area:copy;position:relative;z-index:2;max-width:560px}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  margin:0 0 18px;padding:8px 16px;border-radius:999px;
+  color:var(--mut);font-size:.92rem;font-weight:600;
+  background:rgba(255,255,255,.58);
+  border:1px solid rgba(255,255,255,.76);
+  box-shadow:0 7px 20px rgba(70,70,35,.08);
+  -webkit-backdrop-filter:blur(14px) saturate(135%);
+  backdrop-filter:blur(14px) saturate(135%);
+}
+.hero-copy h1{
+  margin:0;
+  text-align:left;
+  font-size:clamp(2.5rem,4.55vw,4.15rem);
+  line-height:1.04;
+  letter-spacing:-.035em;
+  font-weight:600;
+}
+.hero-copy h1 em{font-style:normal}
+.hero-description{
+  max-width:510px;margin:20px 0 0;
+  color:var(--mut);font-size:1.08rem;line-height:1.65;
+}
+.hero-visual{
+  grid-area:visual;position:relative;z-index:1;
+  min-width:0;display:grid;place-items:center;isolation:isolate;
+  align-self:stretch;
+}
+.hero-visual::before{
+  content:"";position:absolute;z-index:-1;
+  width:112%;height:106%;left:-6%;top:-3%;
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse at 48% 46%,
+      rgba(255,255,255,.78) 0%,
+      rgba(233,249,58,.22) 31%,
+      rgba(248,180,138,.22) 57%,
+      rgba(201,183,239,.24) 75%,
+      transparent 100%);
+  filter:blur(24px);
+}
+.hero-visual::after{
+  content:"";position:absolute;z-index:-1;
+  width:66%;height:8%;left:18%;bottom:7%;
+  border-radius:50%;
+  background:rgba(94,76,43,.13);
+  filter:blur(25px);
+}
+.hero-art{
+  width:min(100%,620px);
+  max-width:620px;
+  margin:0 auto;
+  position:relative;
+}
+.hero-art .ci{
+  display:block;position:relative;z-index:1;
+  transform-origin:50% 78%;
+  animation:heroTeamFloat 7.5s ease-in-out infinite;
+}
+.hero-art img{
+  width:100%;height:auto;object-fit:contain;
+  filter:drop-shadow(0 20px 22px rgba(82,66,34,.12));
+}
+@keyframes heroTeamFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-7px)}
+}
+.hero-actions{
+  grid-area:actions;display:flex;align-items:center;flex-wrap:wrap;
+  gap:12px;margin-top:22px;position:relative;z-index:2;
+}
+.hero-actions .btn{min-width:148px;text-align:center}
+.hero-actions .hero-secondary{
+  color:var(--ink);
+  border:1.5px solid rgba(20,22,15,.62);
+  background:rgba(255,255,255,.48);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+}
+.hero-actions .hero-secondary:hover{
+  background:linear-gradient(120deg,var(--ink) 50%,transparent 50%) 100% 0/220% 100%;
+  color:var(--lime);
+}
+.hero-stats{
+  grid-area:stats;display:flex;align-items:stretch;flex-wrap:wrap;
+  margin-top:30px;padding-top:18px;
+  border-top:1px solid rgba(20,22,15,.15);
+  position:relative;z-index:2;
+}
+.hero-stat{
+  min-width:0;flex:1;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 16px;border-right:1px solid rgba(20,22,15,.14);
+}
+.hero-stat:first-child{padding-left:0}
+.hero-stat:last-child{border-right:0;padding-right:0}
+.hero-stat strong{
+  display:block;font:700 1.55rem/1.2 Georgia,"Times New Roman",serif;
+  color:var(--ink);white-space:nowrap;
+}
+.hero-stat span{display:block;color:var(--mut);font-size:.88rem;line-height:1.35;margin-top:4px}
+.hero-stat-delivery strong{font-family:Arial,sans-serif;font-size:1.55rem;color:#667b13}
+@media(max-width:900px){
+  .hero{column-gap:8px;padding:65px 24px 42px}
+  .hero-copy h1{font-size:clamp(2.35rem,5vw,3.4rem)}
+  .hero-art{width:100%}
+  .hero-stat{padding:0 11px}
+}
+@media(max-width:720px){
+  .hero{
+    grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"copy" "visual" "actions" "stats";
+    gap:0;
+    padding:48px 20px 36px;
+    text-align:center;
+  }
+  .hero-copy{max-width:560px;margin:0 auto}
+  .hero-kicker{font-size:.84rem;margin-bottom:14px}
+  .hero-copy h1{text-align:center;font-size:clamp(2.35rem,9vw,3.15rem);line-height:1.06}
+  .hero-description{font-size:1rem;margin:14px auto 0;max-width:480px}
+  .hero-visual{width:100%;max-width:540px;margin:10px auto 0}
+  .hero-visual::before{width:112%;height:98%;filter:blur(18px)}
+  .hero-visual::after{bottom:6%;height:7%}
+  .hero-art{width:100%;max-width:510px}
+  .hero-actions{justify-content:center;margin-top:4px;gap:10px}
+  .hero-actions .btn{min-width:142px}
+  .hero-stats{width:100%;max-width:510px;margin:25px auto 0;padding-top:15px}
+  .hero-stat{padding:0 8px}
+  .hero-stat strong{font-size:1.35rem}
+  .hero-stat span{font-size:.78rem}
+}
+@media(max-width:380px){
+  .hero{padding-left:16px;padding-right:16px}
+  .hero-copy h1{font-size:2.18rem}
+  .hero-stat{padding:0 6px}
+  .hero-stat strong{font-size:1.2rem}
+  .hero-stat span{font-size:.72rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-art .ci{animation:none!important}
+}
+</style>
 </head>
 <body>
 <div class="wave-backdrop" aria-hidden="true">
@@ -263,8 +418,23 @@ main img.cursor-image.is-hovering,footer img.cursor-image.is-hovering{--lift:-5p
 
 <main>
 <section class="hero">
-  <h1 class="reveal">Business Automation<br><em>“Design the future”</em></h1>
-  <span class="char k-float hero-art" tabindex="0" data-kind="float" data-say="Hi! Let me show you what I can help with." data-par><span class="ci"><img src="assets/image-02.webp" alt="Illustration of Pratik working with colleagues" width="420" height="276"></span></span>
+  <div class="hero-copy reveal">
+    <span class="hero-kicker">✦ Workflow Automation Specialist</span>
+    <h1>Build. Automate.<br><em>Scale Your Business.</em></h1>
+    <p class="hero-description">Airtable, Make.com, Google Sheets and custom automations that turn manual work into simple, reliable workflows.</p>
+  </div>
+  <div class="hero-visual">
+    <span class="char k-float hero-art" tabindex="0" data-kind="float" data-say="Hi! Let me show you what I can help with." data-par><span class="ci"><img src="assets/image-02.webp" alt="Three colleagues collaborating around a laptop" width="768" height="512"></span></span>
+  </div>
+  <div class="hero-actions reveal">
+    <a class="btn" href="#work">View My Work <span aria-hidden="true">↗</span></a>
+    <a class="btn hero-secondary" href="#connect">Let's Talk</a>
+  </div>
+  <div class="hero-stats reveal" aria-label="Work highlights">
+    <div class="hero-stat"><strong>50+</strong><span>Automations Built</span></div>
+    <div class="hero-stat"><strong>20+</strong><span>Clients Supported</span></div>
+    <div class="hero-stat hero-stat-delivery"><strong>✓</strong><span>On-Time Delivery</span></div>
+  </div>
 </section>
 
 <section class="wrap" id="about">
@@ -279,7 +449,7 @@ main img.cursor-image.is-hovering,footer img.cursor-image.is-hovering{--lift:-5p
   </div>
 </section>
 
-<section class="wrap showcase">
+<section class="wrap showcase" id="work">
   <p class="caption reveal">Bring every budget, expense, and financial decision into one organized workspace.</p>
   <div class="row reveal"><img class="card-img" src="assets/image-03.webp" alt="Airtable Budget System" loading="lazy"><span class="char k-point man" tabindex="0" data-kind="point" data-say="Bring every budget into one organized workspace." data-target="row"><span class="ci"><img src="assets/image-04.webp" alt="" loading="lazy"></span></span></div>
 
