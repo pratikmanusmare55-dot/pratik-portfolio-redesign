@@ -729,6 +729,24 @@ body{
 }
 
 
+/* Reuse the same interactive character speech bubble on the hero illustration */
+.hero-art-wrap.char{cursor:pointer;touch-action:pan-y}
+.hero-art-wrap .bubble{
+  z-index:8;
+  max-width:min(290px,78vw);
+  padding:12px 18px;
+  border-radius:17px;
+  font-size:.94rem;
+  line-height:1.35;
+  box-shadow:0 12px 28px rgba(35,30,17,.16);
+}
+.hero-art-wrap.char.on .bubble{
+  opacity:1;
+  transform:translate(calc(-50% + var(--bx,0px)),0) scale(1);
+}
+.hero-art-wrap.char.below .bubble{top:calc(100% + 5px);bottom:auto}
+.hero-art-wrap.char.below .bubble::after{top:-6px;bottom:auto;border:1.5px solid var(--ink);border-bottom:0;border-right:0}
+
 /* ===== Responsive repair: tablet + phone ===== */
 /* Keep the approved wide-screen hero unchanged above 1180px. */
 @media (max-width:1180px){
@@ -1101,9 +1119,10 @@ body{
     </div>
   </div>
   <div class="hero-visual">
-    <div class="hero-speech">Hi! Let me show you what I<br>can help with.</div>
-    <div class="hero-art-wrap">
-      <img class="hero-art-image" src="assets/image-02.webp" alt="Three colleagues collaborating around a laptop" width="768" height="512" fetchpriority="high">
+    <div class="char k-float hero-art-wrap" tabindex="0" data-kind="float" data-say="Hi! Let me show you what I can help with." data-par>
+      <span class="ci">
+        <img class="hero-art-image" src="assets/image-02.webp" alt="Three colleagues collaborating around a laptop" width="768" height="512" fetchpriority="high">
+      </span>
     </div>
   </div>
   <svg class="hero-wave-lines" viewBox="0 0 1800 220" preserveAspectRatio="none" aria-hidden="true">
