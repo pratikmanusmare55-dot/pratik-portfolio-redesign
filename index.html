@@ -1390,6 +1390,19 @@ footer.foot{
   .hero-art-wrap .hero-art-image{transition:none!important}
 }
 
+
+/* Focused Hero adjustment: remove the portrait halo and bring the portrait toward page center. */
+.hero-visual::before{display:none!important}
+@media (min-width:1181px){
+  .hero-art-wrap{left:-80px}
+}
+@media (min-width:721px) and (max-width:1180px){
+  .hero-art-wrap{left:-28px}
+}
+@media (max-width:720px){
+  .hero-art-wrap{left:0}
+}
+
 </style>
 </head>
 <body>
