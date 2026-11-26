@@ -1269,6 +1269,46 @@ footer.foot{
   opacity:1!important;
 }
 
+
+/* Personal Hero portrait: compact scale, transparent edges and natural bottom blend. */
+.hero-art-wrap{
+  width:100%;
+  max-width:440px;
+  margin:18px auto 0;
+}
+.hero-art-wrap .ci{
+  display:block;
+  position:relative;
+  width:100%;
+  height:auto;
+  aspect-ratio:auto;
+  overflow:visible;
+}
+.hero-art-wrap .hero-art-image{
+  position:relative;
+  inset:auto;
+  display:block;
+  width:100%;
+  max-width:440px;
+  height:auto;
+  object-fit:contain;
+  opacity:1!important;
+  filter:drop-shadow(0 14px 20px rgba(42,39,23,.13));
+}
+.hero-art-wrap.char.on .hero-art-image{
+  opacity:1!important;
+  filter:drop-shadow(0 17px 24px rgba(42,39,23,.17));
+}
+@media (max-width:1180px){
+  .hero-art-wrap{max-width:400px;margin:12px auto 0}
+  .hero-art-wrap .hero-art-image{max-width:400px}
+  .hero-visual{max-width:520px}
+}
+@media (max-width:720px){
+  .hero-art-wrap{max-width:320px;margin:8px auto 0}
+  .hero-art-wrap .hero-art-image{max-width:320px}
+}
+
 </style>
 </head>
 <body>
@@ -1365,7 +1405,7 @@ footer.foot{
   <div class="hero-visual">
     <div class="char k-float hero-art-wrap" tabindex="0" data-kind="float" data-say="Let's connect your apps, automate repetitive tasks, and keep every update in sync." data-par>
       <span class="ci">
-        <img class="hero-art-image" src="assets/image-02.webp" alt="Three colleagues collaborating around a laptop" width="768" height="512" fetchpriority="high">
+        <img class="hero-art-image" src="assets/pratik-hero-portrait.webp" alt="Pratik Manusmare portrait" width="400" height="432" fetchpriority="high">
       </span>
     </div>
   </div>
