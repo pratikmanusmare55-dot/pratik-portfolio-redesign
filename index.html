@@ -1403,6 +1403,254 @@ footer.foot{
   .hero-art-wrap{left:0}
 }
 
+
+
+/* ===== Theme toggle + portrait frame: additions only; original light theme stays intact ===== */
+.theme-toggle{
+  width:42px;height:42px;flex:0 0 42px;
+  display:inline-grid;place-items:center;
+  padding:0;border:1.5px solid rgba(20,22,15,.62);border-radius:50%;
+  background:rgba(255,255,255,.22);color:#171813;
+  cursor:pointer;font:700 1.35rem/1 Georgia,serif;
+  transition:transform .28s ease,background .28s ease,border-color .28s ease,color .28s ease;
+}
+.theme-toggle:hover{transform:rotate(-12deg);background:rgba(255,255,255,.56)}
+.theme-toggle-icon{display:block;line-height:1}
+.hero-portrait-shape{
+  position:absolute;z-index:0;pointer-events:none;
+  width:min(88%,500px);height:86%;left:52%;top:3%;
+  border:1.5px solid rgba(255,255,255,.78);
+  border-radius:46px;
+  background:rgba(255,255,255,.025);
+  transform:translateX(-50%) rotate(22deg);
+  transform-origin:center;
+}
+.hero-art-wrap{z-index:2}
+@media(max-width:1050px){
+  .nav nav .theme-toggle{align-self:center;margin:12px 0 2px}
+}
+@media(max-width:720px){
+  .hero-portrait-shape{width:84%;height:82%;left:50%;top:5%;border-radius:34px}
+}
+
+/* ===== Dark mode: same structure, same lime brand accent, only surface colors change ===== */
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --ink:#f3f5ec;
+  --mut:#b8c0b5;
+  --bg:#0b0f0c;
+  --lime:#e9f93a;
+  --lime-d:#b8cf25;
+  --peach:#4b5145;
+}
+html[data-theme="dark"] body{
+  color:var(--ink);
+  background-color:#090d0b;
+  background-image:linear-gradient(180deg,#090d0b 0%,#0d120f 48%,#101612 100%);
+  background-repeat:no-repeat;
+}
+html[data-theme="dark"] .nav,
+html[data-theme="dark"] .nav.scrolled{
+  color:#f4f5ed;
+  border-color:rgba(233,249,58,.34);
+  background:linear-gradient(110deg,rgba(19,25,20,.96),rgba(12,17,14,.92));
+  box-shadow:0 12px 32px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.07);
+}
+html[data-theme="dark"] .nav::before{
+  background:linear-gradient(120deg,rgba(255,255,255,.07),transparent 36%,rgba(233,249,58,.025) 72%,transparent);
+  opacity:1;
+}
+html[data-theme="dark"] .nav .brand img{
+  background:rgba(233,249,58,.06);
+  border-color:rgba(233,249,58,.4);
+  box-shadow:0 2px 10px rgba(0,0,0,.25);
+}
+html[data-theme="dark"] .nav .link,
+html[data-theme="dark"] .link{color:#edf0e8}
+html[data-theme="dark"] .nav .link:hover,
+html[data-theme="dark"] .nav .link.on,
+html[data-theme="dark"] .link:hover,
+html[data-theme="dark"] .link.on{color:var(--lime)}
+html[data-theme="dark"] .link::after{background:var(--lime)}
+html[data-theme="dark"] .nav nav .btn.btn-sm{
+  border-color:var(--lime);
+  color:#11150c;
+  background:var(--lime);
+  box-shadow:0 4px 16px rgba(233,249,58,.12);
+}
+html[data-theme="dark"] .nav nav .btn.btn-sm:hover{
+  color:#11150c;background:#f5ff66;border-color:#f5ff66;
+}
+html[data-theme="dark"] .burger i{background:#f3f5ec}
+html[data-theme="dark"] .burger:hover{background:rgba(233,249,58,.10)}
+html[data-theme="dark"] .theme-toggle{
+  color:var(--lime);border-color:rgba(233,249,58,.7);
+  background:rgba(233,249,58,.08);
+}
+html[data-theme="dark"] .theme-toggle:hover{background:rgba(233,249,58,.16)}
+html[data-theme="dark"] .hero-description,
+html[data-theme="dark"] .about p,
+html[data-theme="dark"] .caption,
+html[data-theme="dark"] .eyebrow,
+html[data-theme="dark"] .step p,
+html[data-theme="dark"] .way p,
+html[data-theme="dark"] .sub,
+html[data-theme="dark"] .svc-head p,
+html[data-theme="dark"] .hero-stat span{
+  color:#bdc5ba;
+}
+html[data-theme="dark"] .hero-kicker{
+  color:#e8eee2;
+  background:rgba(24,31,25,.82);
+  border-color:rgba(233,249,58,.26);
+  box-shadow:0 7px 22px rgba(0,0,0,.18);
+}
+html[data-theme="dark"] .hero-kicker span{color:var(--lime)}
+html[data-theme="dark"] .hero-heading-tagline::before{
+  background:linear-gradient(95deg,rgba(233,249,58,.98),rgba(233,249,58,.88));
+}
+html[data-theme="dark"] .hero-heading-tagline::after{
+  background:linear-gradient(90deg,#b9d20d,#e9f93a,transparent);
+}
+html[data-theme="dark"] .hero-actions .hero-primary{
+  color:#11150c;background:var(--lime);border-color:var(--lime);
+  box-shadow:0 9px 22px rgba(0,0,0,.28);
+}
+html[data-theme="dark"] .hero-actions .hero-primary:hover{
+  color:#11150c;background:#f5ff66;border-color:#f5ff66;
+}
+html[data-theme="dark"] .hero-actions .hero-secondary{
+  color:#f2f5eb;background:rgba(11,16,12,.48);
+  border-color:rgba(233,249,58,.74);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+html[data-theme="dark"] .hero-actions .hero-secondary:hover{
+  color:var(--lime);background:rgba(233,249,58,.09);
+}
+html[data-theme="dark"] .hero-stats{
+  color:#f2f5eb;
+  border-color:rgba(233,249,58,.42);
+  background:linear-gradient(110deg,rgba(21,29,22,.91),rgba(13,19,15,.82));
+  box-shadow:0 12px 34px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.06);
+}
+html[data-theme="dark"] .hero-stats:hover{
+  border-color:rgba(233,249,58,.68);
+  background:linear-gradient(110deg,rgba(27,37,27,.96),rgba(15,23,17,.92));
+  box-shadow:0 20px 46px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.08);
+}
+html[data-theme="dark"] .hero-stat{border-right-color:rgba(233,249,58,.23)}
+html[data-theme="dark"] .hero-stat strong{color:#f3f5ec}
+html[data-theme="dark"] .hero-stat span{color:#c1c9bd}
+html[data-theme="dark"] .hero-stat svg,
+html[data-theme="dark"] .hero-stat .delivery-check-mark{stroke:var(--lime)}
+html[data-theme="dark"] .hero-stat .delivery-check{color:var(--lime)}
+html[data-theme="dark"] .hero-stat:hover{background:rgba(233,249,58,.055)}
+html[data-theme="dark"] .hero-portrait-shape{
+  border-color:rgba(226,237,229,.25);
+  background:rgba(255,255,255,.018);
+  box-shadow:none;
+}
+html[data-theme="dark"] .hero-visual::after{
+  background:rgba(0,0,0,.34);
+  filter:blur(24px);
+}
+html[data-theme="dark"] .hero-art-image{
+  filter:drop-shadow(0 12px 18px rgba(0,0,0,.22));
+}
+html[data-theme="dark"] .hero-art-wrap.char.on .hero-art-image{
+  filter:drop-shadow(0 15px 22px rgba(0,0,0,.26));
+}
+html[data-theme="dark"] .hero-wave-glow{
+  stroke:rgba(233,249,58,.24);filter:blur(8px);
+}
+html[data-theme="dark"] .hero-wave-line{stroke:rgba(233,249,58,.92)}
+html[data-theme="dark"] .hero-wave-line.second{stroke:rgba(233,249,58,.32)}
+html[data-theme="dark"] .steps,
+html[data-theme="dark"] .way,
+html[data-theme="dark"] .form,
+html[data-theme="dark"] details{
+  color:#eef2e9;
+  background:#151c17;
+  border:1px solid rgba(233,249,58,.16);
+  box-shadow:0 10px 30px rgba(0,0,0,.22);
+}
+html[data-theme="dark"] .step b{color:var(--lime)}
+html[data-theme="dark"] .svc.s1,
+html[data-theme="dark"] .svc.s2{
+  color:#eff2e9;
+  background:linear-gradient(145deg,#151d17,#20271d);
+  border:1px solid rgba(233,249,58,.18);
+}
+html[data-theme="dark"] .svc h3{color:var(--lime)}
+html[data-theme="dark"] .svc p{color:#bdc6b9}
+html[data-theme="dark"] .svc:hover{
+  box-shadow:0 18px 36px rgba(0,0,0,.3),0 0 0 1px rgba(233,249,58,.12);
+}
+html[data-theme="dark"] .pill{
+  color:var(--lime);border-color:rgba(233,249,58,.55);
+}
+html[data-theme="dark"] .connect,
+html[data-theme="dark"] footer.foot{
+  color:#f0f3ea;background:transparent!important;background-image:none!important;
+}
+html[data-theme="dark"] .way p{color:#bdc6b9}
+html[data-theme="dark"] .way .em{color:#f0f3ea}
+html[data-theme="dark"] .form input,
+html[data-theme="dark"] .form textarea{
+  color:#f0f3ea;background:#0c120e;border-color:#475447;
+}
+html[data-theme="dark"] .form input::placeholder,
+html[data-theme="dark"] .form textarea::placeholder{color:#9da99b}
+html[data-theme="dark"] .form input:focus,
+html[data-theme="dark"] .form textarea:focus{
+  border-color:var(--lime);box-shadow:0 0 0 4px rgba(233,249,58,.12);
+}
+html[data-theme="dark"] details{
+  background:rgba(21,28,23,.92);
+  border-color:rgba(220,231,221,.16);
+}
+html[data-theme="dark"] details:hover,
+html[data-theme="dark"] details[open]{
+  background:#1a231c;
+  border-color:rgba(233,249,58,.3);
+  box-shadow:0 8px 22px rgba(0,0,0,.25);
+}
+html[data-theme="dark"] summary::after{color:var(--lime)}
+html[data-theme="dark"] details p{color:#bdc6b9}
+html[data-theme="dark"] .bubble,
+html[data-theme="dark"] .hero-art-wrap .bubble{
+  color:#f1f5ec;background:#151d17;border-color:rgba(233,249,58,.62);
+  box-shadow:0 12px 28px rgba(0,0,0,.36);
+}
+html[data-theme="dark"] .bubble::after,
+html[data-theme="dark"] .hero-art-wrap .bubble::after{
+  background:#151d17;border-color:rgba(233,249,58,.62);
+}
+html[data-theme="dark"] .hero-speech{
+  color:#f1f5ec;background:#151d17;border-color:rgba(233,249,58,.62);
+}
+html[data-theme="dark"] .hero-speech::after{
+  background:#151d17;border-color:rgba(233,249,58,.62);
+}
+html[data-theme="dark"] .foot .contact,
+html[data-theme="dark"] .foot .contact span{color:#bdc6b9}
+html[data-theme="dark"] .foot .social svg{fill:#f0f3ea}
+html[data-theme="dark"] .card-img{box-shadow:0 14px 36px rgba(0,0,0,.3)}
+html[data-theme="dark"] .card-img:hover{box-shadow:0 22px 48px rgba(0,0,0,.38)}
+html[data-theme="dark"] .card-img.hl{box-shadow:0 0 0 4px var(--lime),0 22px 48px rgba(0,0,0,.38)}
+@media(max-width:1050px){
+  html[data-theme="dark"] .nav nav{
+    background:rgba(16,23,18,.98);
+    border-color:rgba(233,249,58,.24);
+    box-shadow:0 14px 34px rgba(0,0,0,.38);
+  }
+  html[data-theme="dark"] .nav nav .link{border-bottom-color:rgba(233,249,58,.13)}
+  html[data-theme="dark"] .nav nav.open{border-color:rgba(233,249,58,.3)}
+}
+@media(prefers-reduced-motion:reduce){
+  .theme-toggle{transition:none}
+}
+
 </style>
 </head>
 <body>
@@ -1449,6 +1697,9 @@ footer.foot{
     <a class="link" href="#services">Services</a>
     <a class="link" href="#faq">FAQ</a>
     <a class="btn btn-sm" href="#connect">Connect Now</a>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch theme">
+      <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+    </button>
   </nav>
 </header>
 
@@ -1497,6 +1748,7 @@ footer.foot{
     </div>
   </div>
   <div class="hero-visual">
+    <div class="hero-portrait-shape" aria-hidden="true"></div>
     <div class="char k-float hero-art-wrap" tabindex="0" data-kind="float" data-say="Let's connect your apps, automate repetitive tasks, and keep every update in sync." data-par>
       <span class="ci">
         <img class="hero-art-image" src="assets/pratik-hero-portrait.webp" alt="Pratik Manusmare portrait" width="260" height="281" fetchpriority="high" decoding="async">
@@ -1614,6 +1866,34 @@ footer.foot{
     </div>
   </div>
 </footer>
+
+<script>
+/* Persistent light/dark theme switch. Light remains the default until the visitor changes it. */
+(() => {
+  const root = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+  if (!toggle) return;
+  const icon = toggle.querySelector('.theme-toggle-icon');
+  const applyTheme = (theme, save = false) => {
+    const next = theme === 'dark' ? 'dark' : 'light';
+    root.dataset.theme = next;
+    toggle.setAttribute('aria-pressed', String(next === 'dark'));
+    toggle.setAttribute('aria-label', next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    toggle.title = next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    if (icon) icon.textContent = next === 'dark' ? '☼' : '☾';
+    if (save) {
+      try { localStorage.setItem('pratik-portfolio-theme', next); } catch (error) {}
+    }
+  };
+  let saved = 'light';
+  try { saved = localStorage.getItem('pratik-portfolio-theme') || 'light'; } catch (error) {}
+  applyTheme(saved);
+  toggle.addEventListener('click', () => {
+    applyTheme(root.dataset.theme === 'dark' ? 'light' : 'dark', true);
+  });
+})();
+</script>
+
 <script>(() => {
   const $ = (s, c = document) => [...c.querySelectorAll(s)];
 
